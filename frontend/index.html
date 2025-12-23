@@ -1,0 +1,70 @@
+@'
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Headphone Simulator (Local)</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 24px; }
+    .row { display: grid; grid-template-columns: 360px 1fr; gap: 16px; align-items: start; }
+    label { display:block; margin: 10px 0 4px; font-size: 14px; }
+    input { width: 100%; padding: 8px; font-size: 14px; }
+    button { padding: 10px 14px; margin-top: 12px; cursor: pointer; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; }
+    canvas { width: 100%; height: 460px; }
+    .hint { color:#666; font-size: 13px; margin-top: 6px;}
+    code { background:#f5f5f5; padding:2px 6px; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <h1>Headphone Simulator (Local)</h1>
+  <div class="hint">Backend: <code>http://127.0.0.1:8000</code>　Frontend: <code>http://127.0.0.1:5500</code></div>
+
+  <div class="row">
+    <div class="card">
+      <h3>Parameters</h3>
+
+      <label>f_min (Hz)</label>
+      <input id="fmin" type="number" value="20" step="1" />
+
+      <label>f_max (Hz)</label>
+      <input id="fmax" type="number" value="20000" step="10" />
+
+      <label>n_points</label>
+      <input id="npoints" type="number" value="400" step="10" />
+
+      <hr style="margin:14px 0; border:none; border-top:1px solid #eee;" />
+
+      <label>Bass Gain (dB)</label>
+      <input id="bass" type="number" value="6" step="0.5" />
+
+      <label>Treble Gain (dB)</label>
+      <input id="treble" type="number" value="0" step="0.5" />
+
+      <label>Resonance (Hz)</label>
+      <input id="resHz" type="number" value="3000" step="10" />
+
+      <label>Resonance Q</label>
+      <input id="resQ" type="number" value="1.2" step="0.1" />
+
+      <label>Resonance Gain (dB)</label>
+      <input id="resGain" type="number" value="3" step="0.5" />
+
+      <button id="runBtn">Simulate</button>
+      <div id="status" class="hint"></div>
+    </div>
+
+    <div class="card">
+      <h3>Frequency Response</h3>
+      <canvas id="chart"></canvas>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+'@ | Set-Content -Encoding UTF8 .\index.html
